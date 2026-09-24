@@ -2,6 +2,8 @@
 
 Muzyng is a social music-listening app in progress. Phase 2 adds email/password authentication and basic user profiles while preserving the Audius player from Phase 1.
 
+**Live App:** [https://muzyng.vercel.app/](https://muzyng.vercel.app/)
+
 ## Run locally
 
 ```bash
