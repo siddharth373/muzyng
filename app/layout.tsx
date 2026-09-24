@@ -13,7 +13,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Musyko | Listen together",
+  title: "Muzyng | Listen together",
   description: "A focused music player powered by Audius.",
 };
 

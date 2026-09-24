@@ -12,7 +12,7 @@ export async function searchTracks(query: string): Promise<AudiusTrack[]> {
 export async function getStreamUrl(trackId: string): Promise<string> {
   const baseUrl = process.env.AUDIUS_API_BASE_URL || "https://api.audius.co/v1";
   const url = new URL(`${baseUrl}/tracks/${encodeURIComponent(trackId)}/stream`);
-  url.searchParams.set("app_name", process.env.AUDIUS_APP_NAME || "musyko");
+  url.searchParams.set("app_name", process.env.AUDIUS_APP_NAME || "muzyng");
   return url.toString();
 }
 

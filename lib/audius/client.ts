@@ -1,5 +1,5 @@
 const AUDIUS_API_BASE_URL = process.env.AUDIUS_API_BASE_URL || "https://api.audius.co/v1";
-const AUDIUS_APP_NAME = process.env.AUDIUS_APP_NAME || "musyko";
+const AUDIUS_APP_NAME = process.env.AUDIUS_APP_NAME || "muzyng";
 
 export async function audiusRequest<T>(path: string): Promise<T> {
   const url = new URL(`${AUDIUS_API_BASE_URL}${path}`);
