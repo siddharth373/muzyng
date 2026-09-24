@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { getAuthSiteUrl } from "@/lib/auth/redirect";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
 type AuthFormProps = { mode: "login" | "signup" };
@@ -50,7 +51,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
       const supabase = createSupabaseBrowserClient();
       if (!supabase) throw new Error("Supabase is not configured.");
       if (isSignup) {
-        const emailRedirectTo = `${window.location.origin}/auth/callback?next=/`;
+        const emailRedirectTo = new URL("/auth/callback?next=/", getAuthSiteUrl()).toString();
         const { data, error: signUpError } = await supabase.auth.signUp({ email: normalizedEmail, password, options: { data: { username: normalizedUsername }, emailRedirectTo } });
         if (isExistingEmailError(signUpError) || (!signUpError && data.user?.identities?.length === 0)) { setIsExistingEmail(true); setError("An account with this email already exists. Try logging in instead."); return; }
         if (signUpError) throw signUpError;

@@ -20,12 +20,12 @@ Fill the existing `.env.local` values from Supabase project settings:
 ```env
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=https://muzyng.vercel.app
 ```
 
 `AUDIUS_API_BASE_URL` defaults to `https://api.audius.co/v1` and `AUDIUS_APP_NAME` defaults to `muzyng`. No service-role key is used or exposed.
 
-For the Vercel Production environment, set `NEXT_PUBLIC_SITE_URL` to `https://muzyng.vercel.app` and redeploy. Password reset emails then return to `https://muzyng.vercel.app/reset-password`; local development falls back to the browser origin when this variable is not set.
+For the Vercel Production environment, set `NEXT_PUBLIC_SITE_URL` to `https://muzyng.vercel.app` and redeploy. Password reset emails return to `https://muzyng.vercel.app/reset-password`. The app uses that production URL as a safe fallback when the variable is missing, so auth emails never derive their redirect from the browser origin.
 
 ## Supabase setup
 

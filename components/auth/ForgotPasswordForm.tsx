@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { getAuthSiteUrl } from "@/lib/auth/redirect";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -29,9 +30,8 @@ export default function ForgotPasswordForm() {
     try {
       const supabase = createSupabaseBrowserClient();
       if (!supabase) throw new Error("Supabase is not configured.");
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || window.location.origin;
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(normalizedEmail, {
-        redirectTo: new URL("/reset-password", siteUrl).toString(),
+        redirectTo: new URL("/reset-password", getAuthSiteUrl()).toString(),
       });
       if (resetError) throw resetError;
       setIsSubmitted(true);
