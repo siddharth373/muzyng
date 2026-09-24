@@ -29,8 +29,9 @@ export default function ForgotPasswordForm() {
     try {
       const supabase = createSupabaseBrowserClient();
       if (!supabase) throw new Error("Supabase is not configured.");
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || window.location.origin;
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(normalizedEmail, {
-        redirectTo: `${window.location.origin}/reset-password`,
+        redirectTo: new URL("/reset-password", siteUrl).toString(),
       });
       if (resetError) throw resetError;
       setIsSubmitted(true);
